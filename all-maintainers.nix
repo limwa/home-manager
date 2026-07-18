@@ -2144,7 +2144,7 @@
     github = "rsahwe";
     githubId = 201613730;
     name = "rsahwe";
-    source = "home-manager";
+    source = "nixpkgs";
   };
   rszamszur = {
     email = "radoslawszamszur@gmail.com";

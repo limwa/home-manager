@@ -529,12 +529,6 @@
     github = "Rosuavio";
     githubId = 7164552;
   };
-  rsahwe = {
-    name = "rsahwe";
-    email = "rsahwe@gmx.net";
-    github = "rsahwe";
-    githubId = 201613730;
-  };
   rszamszur = {
     name = "Radosław Szamszur";
     email = "radoslawszamszur@gmail.com";
