@@ -1,8 +1,7 @@
 { pkgs, ... }:
 let
   darwinTestApp = pkgs.runCommandLocal "target-darwin-example-app" { } ''
-    mkdir -p $out/Applications
-    touch $out/Applications/example-app
+    mkdir -p $out/Applications/example.app
   '';
 in
 {
@@ -10,7 +9,8 @@ in
     home.packages = [ darwinTestApp ];
 
     nmt.script = ''
-      assertFileExists 'home-files/Applications/Home Manager Apps/example-app'
+      assertFileRegex activate 'rsync.*--links.*--delete'
+      assertFileRegex activate 'home-manager-applications/Applications/'
     '';
   };
 }
