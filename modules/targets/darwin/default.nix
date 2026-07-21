@@ -8,6 +8,7 @@
 
   imports = [
     ./user-defaults
+    ./dock.nix
     ./fonts.nix
     ./keybindings.nix
     ./copyapps.nix
