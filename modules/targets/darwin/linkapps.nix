@@ -31,15 +31,23 @@ in
       (lib.hm.assertions.assertPlatform "targets.darwin.linkApps" pkgs lib.platforms.darwin)
     ];
 
-    # Install MacOS applications to the user environment.
-    home.file.${cfg.directory}.source =
+    home.activation.linkApps = lib.hm.dag.entryAfter [ "installPackages" "linkGeneration" ] (
       let
-        apps = pkgs.buildEnv {
+        applications = pkgs.buildEnv {
           name = "home-manager-applications";
           paths = config.home.packages;
           pathsToLink = [ "/Applications" ];
         };
       in
-      "${apps}/Applications";
+      # bash
+      ''
+        targetFolder='${cfg.directory}'
+
+        echo "setting up ~/$targetFolder..." >&2
+
+        run mkdir -p "$targetFolder"
+        run ${lib.getExe pkgs.rsync} --recursive --links --delete ${applications}/Applications/ "$targetFolder"
+      ''
+    );
   };
 }
