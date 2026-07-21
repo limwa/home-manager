@@ -1,0 +1,19 @@
+modules/targets/darwin/dock.nix
+  s_7acad22f0abdfe::t_6488e4df40eb22 1-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "91a062cab37118ff1f9fc2d90df4f57fefd248a1",
+  "prompts": {},
+  "sessions": {
+    "s_7acad22f0abdfe": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_07c18b382ffeb5Ea6TQeOGd3bd",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "limwa <me@limwa.pt>"
+    }
+  }
+}
