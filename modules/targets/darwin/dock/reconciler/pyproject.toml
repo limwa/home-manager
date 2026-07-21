@@ -1,0 +1,12 @@
+[project]
+name = "reconciler"
+version = "0.0.1"
+authors = [{ name = "Home Manager Contributors" }]
+dependencies = ["pydantic"]
+
+[project.scripts]
+reconcile = "reconciler.__main__:main"
+
+[build-system]
+requires = ["hatchling ~= 1.27"]
+build-backend = "hatchling.build"
