@@ -289,10 +289,21 @@ in
             paths = [ cfg.package ];
             preferLocalBuild = true;
             nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              wrapProgram $out/bin/${cfg.package.meta.mainProgram or "zeditor"} \
-                --suffix PATH : ${lib.makeBinPath cfg.extraPackages}
-            '';
+            postBuild =
+              lib.optionalString (pkgs.stdenv.hostPlatform.isDarwin) ''
+                for executable in Applications/Zed.app/Contents/MacOS/{zed,cli}; do
+                  # Replace the symlink with a copy
+                  cp -L "$out/$executable" "$out/$executable.tmp"
+                  mv "$out/$executable.tmp" "$out/$executable"
+
+                  wrapProgram "$out/$executable" \
+                    --suffix PATH : ${lib.makeBinPath cfg.extraPackages}
+                done
+              ''
+              + ''
+                wrapProgram $out/bin/${cfg.package.meta.mainProgram or "zeditor"} \
+                  --suffix PATH : ${lib.makeBinPath cfg.extraPackages}
+              '';
           })
         ]
       else
